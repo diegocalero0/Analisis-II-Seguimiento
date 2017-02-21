@@ -1,15 +1,9 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-import enumeraciones.Genero;
+import java.lang.String;
+import java.util.Date;
+import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: Persona
@@ -18,24 +12,28 @@ import enumeraciones.Genero;
 @Entity
 
 public class Persona implements Serializable {
-	
+
+	   
 	@Id
-	private long cedula;
-	private String nombre;
-	private String apellido;
-	private Genero genero;
+	@Column(length = 20)
+	protected String cedula;
+	@Column(length = 15)
+	protected String nombre;
+	@Column(length = 15)
+	protected String apellido;
+	@Column(length = 50, name = "email")
+	protected String correo_electronico;
+	protected Date fecha_nacimiento;
 	private static final long serialVersionUID = 1L;
-	@ElementCollection
-	private Map<String, String> telefono;
 
 	public Persona() {
 		super();
 	}   
-	public long getCedula() {
+	public String getCedula() {
 		return this.cedula;
 	}
 
-	public void setCedula(long cedula) {
+	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}   
 	public String getNombre() {
@@ -51,69 +49,20 @@ public class Persona implements Serializable {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
-	
-	
-	   
-	/**
-	 * @return the genero
-	 */
-	public Genero getGenero() {
-		return genero;
-	}
-	/**
-	 * @param genero the genero to set
-	 */
-	public void setGenero(Genero genero) {
-		this.genero = genero;
-	}
-	
-	
-	
-	/**
-	 * @return the telefono
-	 */
-	public Map<String, String> getTelefono() {
-		return telefono;
-	}
-	/**
-	 * @param telefono the telefono to set
-	 */
-	public void setTelefono(Map<String, String> telefono) {
-		this.telefono = telefono;
-	}
-	/**
-	 * @return the serialversionuid
-	 */
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (cedula ^ (cedula >>> 32));
-		return result;
-	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Persona other = (Persona) obj;
-		if (cedula != other.cedula)
-			return false;
-		return true;
+	}   
+	public String getCorreo_electronico() {
+		return this.correo_electronico;
 	}
 
+	public void setCorreo_electronico(String correo_electronico) {
+		this.correo_electronico = correo_electronico;
+	}   
+	public Date getFecha_nacimiento() {
+		return this.fecha_nacimiento;
+	}
+
+	public void setFecha_nacimiento(Date fecha_nacimiento) {
+		this.fecha_nacimiento = fecha_nacimiento;
+	}
    
 }

@@ -16,7 +16,7 @@ Definitions //EN" "http://www.sun.com/software/appserver/dtds/sun-resources_1_3.
 
 		<property name="password" value="adminroot" />
 
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/prueba" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/su_turno" />
 
 	</jdbc-connection-pool>
 
