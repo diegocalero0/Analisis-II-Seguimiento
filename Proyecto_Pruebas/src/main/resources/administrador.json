@@ -1,0 +1,11 @@
+{
+	"administrador": [
+		{
+			"CEDULA": "987654321",
+			"APELLIDO" : "Candela",
+			"CONTRASENIA": "0000",
+			"EMAIL": "christiancandela@uqvirtual.edu.co",
+			"NOMBRE": "Christian"
+		}
+	]
+}

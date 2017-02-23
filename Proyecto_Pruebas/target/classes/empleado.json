@@ -1,0 +1,20 @@
+{
+	"empleado": [
+		{
+			"CEDULA": "97091724522",
+			"NOMBRE": "maria",
+			"APELLIDO": "hurtado",
+			"EMAIL": "mariahurtado@gmail.com",
+			"CONTRASENIA": "1234",
+			"CLIENTE_ACTUAL_CEDULA": "1094964052"
+		},
+		{
+			"CEDULA": "123456789",
+			"NOMBRE": "jorge",
+			"APELLIDO": "garcia",
+			"EMAIL": "jorgegarcia@gmail.com",
+			"CONTRASENIA": "12345",
+			"CLIENTE_ACTUAL_CEDULA": "41890975"
+		}
+	]
+}

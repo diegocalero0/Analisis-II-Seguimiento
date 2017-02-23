@@ -14,7 +14,7 @@ import javax.persistence.*;
 
 public class Empleado extends Operador implements Serializable {
 
-	@OneToOne
+	@OneToOne	
 	private Cliente cliente_actual;
 	@ManyToMany
 	private List<Servicio> servicios;

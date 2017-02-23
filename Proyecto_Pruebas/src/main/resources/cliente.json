@@ -1,0 +1,20 @@
+{
+	"cliente": [
+		{
+			"CEDULA": "1094964052",
+			"NOMBRE": "diego",
+			"APELLIDO": "calero",
+			"EMAIL": "diegoacalero0@gmail.com",
+			"TURNO_NUMERO": "0",
+			"TIPO_NOMBRE": "estandar"
+		},
+		{
+			"CEDULA": "41890975",
+			"NOMBRE": "lucero",
+			"APELLIDO": "galvis",
+			"EMAIL": "marialucerogalvis1@gmail.com",
+			"TURNO_NUMERO": "2",
+			"TIPO_NOMBRE": "enfermo"
+		}
+	]
+}

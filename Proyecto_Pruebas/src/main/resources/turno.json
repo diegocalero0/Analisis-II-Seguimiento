@@ -1,0 +1,16 @@
+{
+	"turno": [
+		{
+			"NUMERO": "0",
+			"SERVICIO_NOMBRE": "general"
+		},
+		{
+			"NUMERO": "1",
+			"SERVICIO_NOMBRE": "general"
+		},
+		{
+			"NUMERO": "2",
+			"SERVICIO_NOMBRE": "general"
+		}
+	]
+}

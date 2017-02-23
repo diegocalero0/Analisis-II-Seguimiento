@@ -1,0 +1,16 @@
+{
+	"tipocliente":[
+		{
+			"NOMBRE": "estandar",
+			"PRIORIDAD": "2"
+		},
+		{
+			"NOMBRE": "adulto mayor",
+			"PRIORIDAD": "10"
+		},
+		{
+			"NOMBRE": "enfermo",
+			"PRIORIDAD": "5"
+		}
+	]
+}

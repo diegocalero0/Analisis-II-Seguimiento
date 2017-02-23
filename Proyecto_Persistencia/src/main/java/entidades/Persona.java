@@ -21,7 +21,7 @@ public class Persona implements Serializable {
 	protected String nombre;
 	@Column(length = 15)
 	protected String apellido;
-	@Column(length = 50, name = "email")
+	@Column(length = 50, name = "EMAIL")
 	protected String correo_electronico;
 	//protected Date fecha_nacimiento;
 	private static final long serialVersionUID = 1L;
@@ -56,7 +56,15 @@ public class Persona implements Serializable {
 
 	public void setCorreo_electronico(String correo_electronico) {
 		this.correo_electronico = correo_electronico;
-	}   
+	}
+	
+	@Override
+	public boolean equals(Object p){
+		Persona per = (Persona)p;
+		if(cedula == per.getCedula())
+			return true;
+		return false;
+	}
 //	public Date getFecha_nacimiento() {
 //		return this.fecha_nacimiento;
 //	}

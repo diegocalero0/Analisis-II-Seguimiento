@@ -19,5 +19,5 @@ public class Administrador extends Operador implements Serializable {
 	public Administrador() {
 		super();
 	}    
-  
+	
 }
