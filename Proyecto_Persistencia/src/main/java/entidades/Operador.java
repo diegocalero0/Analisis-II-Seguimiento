@@ -9,7 +9,7 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Operador
  *
  */
-@Entity
+@MappedSuperclass
 
 public class Operador extends Persona implements Serializable {
 

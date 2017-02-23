@@ -2,6 +2,8 @@ package entidades;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -18,6 +20,8 @@ public class Servicio implements Serializable {
 	private String nombre;
 	@Column(length = 250)
 	private String descripcion;
+	@ManyToMany(mappedBy = "servicios")
+	private List<Empleado> empleados;
 	private static final long serialVersionUID = 1L;
 
 	public Servicio() {

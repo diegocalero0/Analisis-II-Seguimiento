@@ -9,7 +9,7 @@ import javax.persistence.*;
  * Entity implementation class for Entity: Persona
  *
  */
-@Entity
+@MappedSuperclass
 
 public class Persona implements Serializable {
 
@@ -23,7 +23,7 @@ public class Persona implements Serializable {
 	protected String apellido;
 	@Column(length = 50, name = "email")
 	protected String correo_electronico;
-	protected Date fecha_nacimiento;
+	//protected Date fecha_nacimiento;
 	private static final long serialVersionUID = 1L;
 
 	public Persona() {
@@ -57,12 +57,12 @@ public class Persona implements Serializable {
 	public void setCorreo_electronico(String correo_electronico) {
 		this.correo_electronico = correo_electronico;
 	}   
-	public Date getFecha_nacimiento() {
-		return this.fecha_nacimiento;
-	}
-
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
-		this.fecha_nacimiento = fecha_nacimiento;
-	}
+//	public Date getFecha_nacimiento() {
+//		return this.fecha_nacimiento;
+//	}
+//
+//	public void setFecha_nacimiento(Date fecha_nacimiento) {
+//		this.fecha_nacimiento = fecha_nacimiento;
+//	}
    
 }

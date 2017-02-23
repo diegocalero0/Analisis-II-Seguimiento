@@ -14,6 +14,7 @@ public class Turno implements Serializable {
 	   
 	@Id
 	private int numero;
+	@ManyToOne
 	private Servicio servicio;
 	private static final long serialVersionUID = 1L;
 

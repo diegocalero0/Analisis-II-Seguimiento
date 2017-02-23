@@ -15,8 +15,9 @@ import javax.validation.constraints.Max;
 
 public class Cliente extends Persona implements Serializable {
 
-	
+	@OneToOne
 	private Turno turno;
+	@ManyToOne
 	private TipoCliente tipo;
 	private static final long serialVersionUID = 1L;
 
