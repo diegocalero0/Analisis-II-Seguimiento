@@ -7,34 +7,57 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: Empleado
+ * Clase de la entidad: Empleado
  *
  */
 @Entity
-
 public class Empleado extends Operador implements Serializable {
-
+	/**
+	 * Cliente que está siendo atendido
+	 */
 	@OneToOne	
 	private Cliente cliente_actual;
+	/**
+	 * Lista de servicios que puede atender el empleado
+	 */
 	@ManyToMany
 	private List<Servicio> servicios;
+	/**
+	 * Serial que representa la clase serializable
+	 */
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * Constructor vacio para la clase empleado
+	 */
 	public Empleado() {
 		super();
-	}   
+	}  
+	/**
+	 * Metodo get para el atributo ciente_actual
+	 * @return el cliente que esta siendo atendido
+	 */
 	public Cliente getCliente_actual() {
 		return this.cliente_actual;
 	}
-
+	/**
+	 * Metodo set para el atributo cliente_actual
+	 * @param cliente_actual el nuevo cliente
+	 */
 	public void setCliente_actual(Cliente cliente_actual) {
 		this.cliente_actual = cliente_actual;
 	}   
-	public List getServicios() {
+	/**
+	 * Metodo get para el atributo servicios
+	 * @return la lista de servicios
+	 */
+	public List<Servicio> getServicios() {
 		return this.servicios;
 	}
-
-	public void setServicios(List servicios) {
+	/**
+	 * Metodo set para el atributo servicios
+	 * @param servicios la nueva lista de servicios
+	 */
+	public void setServicios(List<Servicio> servicios) {
 		this.servicios = servicios;
 	}
    

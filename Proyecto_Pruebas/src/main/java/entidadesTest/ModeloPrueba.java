@@ -1,4 +1,4 @@
-package prueba_tablas;
+package entidadesTest;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
