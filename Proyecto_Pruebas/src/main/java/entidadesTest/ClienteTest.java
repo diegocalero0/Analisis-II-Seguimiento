@@ -28,7 +28,10 @@ import entidades.Turno;
 @RunWith(Arquillian.class)
 public class ClienteTest {
 	
-	
+	/**
+	 * manejador de entidades, permite trabajar con las instancia de las entidades
+	 * en la base de datos
+	 */
 	@PersistenceContext
 	private EntityManager em;
 	

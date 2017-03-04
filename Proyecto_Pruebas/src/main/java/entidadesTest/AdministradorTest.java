@@ -1,5 +1,7 @@
 package entidadesTest;
 
+import java.sql.Timestamp;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -23,6 +25,10 @@ import entidades.Administrador;
  */
 @RunWith(Arquillian.class)
 public class AdministradorTest {
+	/**
+	 * manejador de entidades, permite trabajar con las instancia de las entidades
+	 * en la base de datos
+	 */
 	@PersistenceContext
 	private EntityManager em;
 	
@@ -70,7 +76,7 @@ public class AdministradorTest {
 	
 	/**
 	 * Metodo de prueba para la funcion Remove
-	 * Elimina el Administrador, se consulta y se verifica que esta consulta retorn null
+	 * Elimina el Administrador, se consulta y se verifica que esta consulta retorna null
 	 */
 	@Test
 	@Transactional(value=TransactionMode.ROLLBACK)
