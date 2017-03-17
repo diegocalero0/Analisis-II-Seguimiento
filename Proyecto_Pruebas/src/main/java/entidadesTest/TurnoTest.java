@@ -1,7 +1,10 @@
-package entidadesTest;
+package entidadestest;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -106,6 +109,20 @@ public class TurnoTest {
 		Turno temp = (Turno)em.find(Turno.class, 3);
 		
 		Assert.assertEquals("temporal", temp.getServicio().getNombre());
+	}
+	
+	/**
+	 * Metodo test para la consulta de todos los turnos
+	 * Se realiza la consulta, y se verifica que el numero de elementos coincida con los que sabemos
+	 * que existen en la base de datos
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	public void consultaTest(){
+		TypedQuery<Turno> q = em.createNamedQuery(Turno.get_all_wihtout_general, Turno.class);
+		List<Turno> l = q.getResultList();
+		Assert.assertTrue(l.size() == 1);
 	}
 	
 }

@@ -1,7 +1,10 @@
-package entidadesTest;
+package entidadestest;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -16,6 +19,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import entidades.Administrador;
 import entidades.Cliente;
 import entidades.TipoCliente;
 import entidades.Turno;
@@ -70,14 +74,14 @@ public class ClienteTest {
 		clienteTest.setNombre("Marcela");
 		clienteTest.setApellido("Castaño");
 		clienteTest.setCedula("555555");
-		clienteTest.setCorreo_electronico("marce@gmail.com");
+		clienteTest.setCorreoElectronico("marce@gmail.com");
 		TipoCliente tc = (TipoCliente)em.find(TipoCliente.class, "enfermo");
 		clienteTest.setTipo(tc);
 		Turno t = (Turno)em.find(Turno.class, 3);
 		clienteTest.setTurno(t);
 		em.persist(clienteTest);
 		Cliente temp = (Cliente)em.find(Cliente.class, "555555");
-		Assert.assertEquals(temp.getCorreo_electronico(), "marce@gmail.com");
+		Assert.assertEquals(temp.getCorreoElectronico(), "marce@gmail.com");
 	}
 	
 	/**
@@ -107,6 +111,21 @@ public class ClienteTest {
 		clienteTest.setApellido("hurtado");
 		Cliente temp = (Cliente)em.find(Cliente.class, "41890975");
 		Assert.assertEquals("hurtado", temp.getApellido());
+	}
+	
+	/**
+	 * Metodo test para la consulta de todos los clientes
+	 * Se realiza la consulta, y se verifica que el numero de elementos coincida con los que sabemos
+	 * que existen en la base de datos
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	public void consultaTest(){
+		TypedQuery<Cliente> q = em.createNamedQuery(Cliente.get_all, Cliente.class);
+		List<Cliente> l = q.getResultList();
+		Assert.assertEquals(2, l.size());
+		Assert.assertTrue(l.get(0).getNombre().equals("diego") || l.get(0).getNombre().equals("lucero"));
 	}
 	
 }

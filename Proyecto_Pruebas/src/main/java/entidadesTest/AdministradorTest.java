@@ -1,9 +1,13 @@
-package entidadesTest;
+package entidadestest;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.persistence.UsingDataSet;
@@ -68,7 +72,7 @@ public class AdministradorTest {
 		adminTest.setApellido("Calero");
 		adminTest.setCedula("88888");
 		adminTest.setContrasenia("1111");
-		adminTest.setCorreo_electronico("diegoacalero0@gmail.com");
+		adminTest.setCorreoElectronico("diegoacalero0@gmail.com");
 		em.persist(adminTest);
 		Administrador temp = (Administrador)em.find(Administrador.class, "88888");
 		Assert.assertEquals(temp.getContrasenia(), "1111");
@@ -101,6 +105,20 @@ public class AdministradorTest {
 		adminTest.setApellido("Galvis");
 		Administrador temp = (Administrador)em.find(Administrador.class, "987654321");
 		Assert.assertEquals("Galvis", temp.getApellido());
+	}
+	
+	/**
+	 * Metodo test para la consulta de todos los administradores
+	 * Se realiza la consulta, y se verifica que el numero de elementos coincida con los que sabemos
+	 * que existen en la base de datos
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	public void consultaTest(){
+		TypedQuery<Administrador> q = em.createNamedQuery(Administrador.get_all, Administrador.class);
+		List<Administrador> l = q.getResultList();
+		Assert.assertEquals(1, l.size());
 	}
 	
 }

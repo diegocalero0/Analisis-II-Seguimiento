@@ -11,8 +11,11 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = Cliente.get_all, query = "select cliente from Cliente cliente")
+})
 public class Cliente extends Persona implements Serializable {
-
+	public static final String get_all = "Cliente_getall";
 	/**
 	 * Turno asignado a la persona
 	 */

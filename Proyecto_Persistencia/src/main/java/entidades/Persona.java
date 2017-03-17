@@ -32,12 +32,12 @@ public class Persona implements Serializable {
 	 * Correo electronico de la persona
 	 */
 	@Column(length = 50, name = "EMAIL")
-	protected String correo_electronico;
+	protected String correoElectronico;
 	/**
 	 * Fecha de nacimiento de la persona
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	protected Date fecha_nacimiento;
+	protected Date fechaNacimiento;
 	/**
 	 * Serial que representa la clase serializable
 	 */
@@ -94,29 +94,29 @@ public class Persona implements Serializable {
 	 * Metodo get del atributo correo_electronico
 	 * @return el correo actual de la persona
 	 */
-	public String getCorreo_electronico() {
-		return this.correo_electronico;
+	public String getCorreoElectronico() {
+		return this.correoElectronico;
 	}
 	/**
 	 * Metodo set del atributo correo_electronico
 	 * @param correo_electronico el nuevo correo electronico
 	 */
-	public void setCorreo_electronico(String correo_electronico) {
-		this.correo_electronico = correo_electronico;
+	public void setCorreoElectronico(String correoElectronico) {
+		this.correoElectronico = correoElectronico;
 	}
 	/**
 	 * Metodo get del atributo fecha_nacimiento
 	 * @return la fecha de nacimiento de la persona
 	 */
-	public Date getFecha_nacimiento() {
-		return this.fecha_nacimiento;
+	public Date getFechaNacimiento() {
+		return this.fechaNacimiento;
 	}
 	/**
 	 * Metodo set del atributo fecha de nacimiento
 	 * @param fecha_nacimiento la nueva fecha de nacimiento
 	 */
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
-		this.fecha_nacimiento = fecha_nacimiento;
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 	/**
 	 * Metodo equals sobreescrito para comparar dos entidades

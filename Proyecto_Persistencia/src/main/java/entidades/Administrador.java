@@ -8,8 +8,11 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = Administrador.get_all, query = "select administrador from Administrador administrador")
+})
 public class Administrador extends Operador implements Serializable {
-	
+	public static final String get_all = "Administrador_getall";
 	/**
 	 * Serial que representa la clase serializable
 	 */

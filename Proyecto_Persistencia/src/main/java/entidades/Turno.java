@@ -8,7 +8,13 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = Turno.get_all, query = "select turno from Turno turno"),
+	@NamedQuery(name = Turno.get_all_wihtout_general, query = "select turno from Turno turno where turno.servicio.nombre != 'general'")
+})
 public class Turno implements Serializable {
+	public static final String get_all = "Turno_getall";
+	public static final String get_all_wihtout_general = "Turno_getall_wihtout_general";
 	/**
 	 * Numero asignado al turno
 	 */

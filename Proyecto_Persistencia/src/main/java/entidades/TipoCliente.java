@@ -10,8 +10,13 @@ import javax.validation.constraints.Max;
  *
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = TipoCliente.get_all, query = "select tipocliente from TipoCliente tipocliente"),
+	@NamedQuery(name = TipoCliente.get_priority_almost_5, query = "select tipocliente from TipoCliente tipocliente where tipocliente.prioridad <= 5")
+})
 public class TipoCliente implements Serializable {
-
+	public static final String get_all = "TipoCliente_getall";
+	public static final String get_priority_almost_5 = "TipoCliente_get_priority_almost_5";
 	/**
 	 * Nombre del tipo de cliente
 	 */

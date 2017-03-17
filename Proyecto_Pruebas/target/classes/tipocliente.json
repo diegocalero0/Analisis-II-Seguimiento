@@ -11,6 +11,10 @@
 		{
 			"NOMBRE": "enfermo",
 			"PRIORIDAD": "5"
+		},
+		{
+			"NOMBRE": "muy enfermo",
+			"PRIORIDAD": "10"
 		}
 	]
 }

@@ -1,11 +1,15 @@
-package entidadesTest;
+package entidadestest;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.persistence.UsingDataSet;
@@ -71,12 +75,12 @@ public class EmpleadoTest {
 		EmpleadoTest.setNombre("Dayana");
 		EmpleadoTest.setApellido("Giraldo");
 		EmpleadoTest.setCedula("121212");
-		EmpleadoTest.setCorreo_electronico("dayanagiraldo@gmail.com");
+		EmpleadoTest.setCorreoElectronico("dayanagiraldo@gmail.com");
 		Date fecha = new Date();
 		EmpleadoTest.setCliente_actual(em.find(Cliente.class, "1094964052"));
 		em.persist(EmpleadoTest);
 		Empleado temp = (Empleado)em.find(Empleado.class, "121212");
-		Assert.assertEquals(temp.getCorreo_electronico(), "dayanagiraldo@gmail.com");
+		Assert.assertEquals(temp.getCorreoElectronico(), "dayanagiraldo@gmail.com");
 	}
 	
 	/**
@@ -112,10 +116,26 @@ public class EmpleadoTest {
 			e.printStackTrace();
 		} 
 		java.sql.Date fecha_nacimiento = new java.sql.Date(fechaDate.getTime());
-		EmpleadoTest.setFecha_nacimiento(fecha_nacimiento);
+		EmpleadoTest.setFechaNacimiento(fecha_nacimiento);
 		Empleado temp = (Empleado)em.find(Empleado.class, "123456789");
-		Assert.assertEquals(2015, temp.getFecha_nacimiento().getYear() + 1900);
-		Assert.assertEquals(0, temp.getFecha_nacimiento().getMonth());
-		Assert.assertEquals(14, temp.getFecha_nacimiento().getDate());
+		Assert.assertEquals(2015, temp.getFechaNacimiento().getYear() + 1900);
+		Assert.assertEquals(0, temp.getFechaNacimiento().getMonth());
+		Assert.assertEquals(14, temp.getFechaNacimiento().getDate());
 	}
+	
+	/**
+	 * Metodo test para la consulta de todos los Empleados
+	 * Se realiza la consulta, y se verifica que el numero de elementos coincida con los que sabemos
+	 * que existen en la base de datos
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	public void consultaTest(){
+		TypedQuery<Empleado> q = em.createNamedQuery(Empleado.get_all, Empleado.class);
+		List<Empleado> l = q.getResultList();
+		Assert.assertEquals(2, l.size());
+		Assert.assertTrue(l.get(0).getNombre().equals("maria") || l.get(0).getNombre().equals("jorge"));
+	}
+	
 }

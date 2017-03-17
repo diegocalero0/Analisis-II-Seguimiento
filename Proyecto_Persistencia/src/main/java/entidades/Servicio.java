@@ -11,8 +11,11 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = Servicio.get_all, query = "select servicio from Servicio servicio")
+})
 public class Servicio implements Serializable {
-
+	public static final String get_all = "Servicio_getall";
 	/**
 	 * nombre del servicio
 	 */

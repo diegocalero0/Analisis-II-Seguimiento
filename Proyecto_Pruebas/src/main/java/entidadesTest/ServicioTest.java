@@ -1,12 +1,14 @@
-package entidadesTest;
+package entidadestest;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -21,6 +23,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import entidades.Administrador;
 import entidades.Cliente;
 import entidades.Servicio;
 
@@ -107,6 +110,20 @@ public class ServicioTest {
 		Servicio temp = (Servicio)em.find(Servicio.class, "general");
 		
 		Assert.assertEquals("servicios normales", temp.getDescripcion());
+	}
+
+	/**
+	 * Metodo test para la consulta de todos los servicios
+	 * Se realiza la consulta, y se verifica que el numero de elementos coincida con los que sabemos
+	 * que existen en la base de datos
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	public void consultaTest(){
+		TypedQuery<Servicio> q = em.createNamedQuery(Servicio.get_all, Servicio.class);
+		List<Servicio> l = q.getResultList();
+		Assert.assertTrue(!l.isEmpty());
 	}
 	
 }

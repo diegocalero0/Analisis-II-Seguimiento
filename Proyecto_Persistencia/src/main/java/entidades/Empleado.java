@@ -11,7 +11,11 @@ import javax.persistence.*;
  *
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = Empleado.get_all, query = "select empleado from Empleado empleado")
+})
 public class Empleado extends Operador implements Serializable {
+	public static final String get_all = "Empleado_getall";
 	/**
 	 * Cliente que está siendo atendido
 	 */

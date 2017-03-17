@@ -1,7 +1,10 @@
-package entidadesTest;
+package entidadestest;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -16,6 +19,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import entidades.Servicio;
 import entidades.TipoCliente;
 
 /**
@@ -99,6 +103,20 @@ public class TipoClienteTest {
 		TipoCliente temp = (TipoCliente)em.find(TipoCliente.class, "enfermo");
 		
 		Assert.assertEquals(5, temp.getPrioridad());
+	}
+	
+	/**
+	 * Metodo test para la consulta de todos los tipo de clientes
+	 * Se realiza la consulta, y se verifica que el numero de elementos coincida con los que sabemos
+	 * que existen en la base de datos
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	public void consultaTest(){
+		TypedQuery<TipoCliente> q = em.createNamedQuery(TipoCliente.get_priority_almost_5, TipoCliente.class);
+		List<TipoCliente> l = q.getResultList();
+		Assert.assertEquals(2, l.size());
 	}
 	
 }

@@ -3,6 +3,14 @@
 		{
 			"NOMBRE": "general",
 			"DESCRIPCION": "Atencion general al usuario" 
+		},
+		{
+			"NOMBRE": "particular",
+			"DESCRIPCION": "Atencion particular al usuario" 
+		},
+		{
+			"NOMBRE": "aleatorio",
+			"DESCRIPCION": "Atencion aleatoria al usuario" 
 		}
 	]
 }
