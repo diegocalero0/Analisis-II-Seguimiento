@@ -19,7 +19,7 @@ public class Cliente extends Persona implements Serializable {
 	/**
 	 * Turno asignado a la persona
 	 */
-	@OneToOne
+	@OneToOne(mappedBy = "cliente")
 	private Turno turno;
 	/**
 	 * Categoria a la que pertenece un cliente

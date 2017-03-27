@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.*;
 
 /**
@@ -10,11 +11,15 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = Turno.get_all, query = "select turno from Turno turno"),
-	@NamedQuery(name = Turno.get_all_wihtout_general, query = "select turno from Turno turno where turno.servicio.nombre != 'general'")
+	@NamedQuery(name = Turno.get_all_wihtout_general, query = "select turno from Turno turno where turno.servicio.nombre != 'general'"),
+	@NamedQuery(name = Turno.get_cliente, query = "select turno.cliente from Turno turno where turno.numero = :num"),
+	@NamedQuery(name = Turno.get_turnos_fecha, query = "select new dto.TurnoFechaDTO(t.numero, t.servicio.nombre, t.cliente.cedula, t.cliente.nombre, t.cliente.correoElectronico) from Turno t where t.fecha = :fecha")
 })
 public class Turno implements Serializable {
 	public static final String get_all = "Turno_getall";
 	public static final String get_all_wihtout_general = "Turno_getall_wihtout_general";
+	public static final String get_cliente = "Turno_get_cliente";
+	public static final String get_turnos_fecha = "Turno_getall_fecha";
 	/**
 	 * Numero asignado al turno
 	 */
@@ -25,6 +30,17 @@ public class Turno implements Serializable {
 	 */
 	@ManyToOne
 	private Servicio servicio;
+	/**
+	 * Cliente que contiene el turno
+	 */
+	@OneToOne
+	private Cliente cliente;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
+	/**
+	 * Fecha en la que se asignó el turno
+	 */
+	private Date fecha;
 	/**
 	 * Serial que representa la clase serializable
 	 */
@@ -63,5 +79,33 @@ public class Turno implements Serializable {
 	public void setServicio(Servicio servicio) {
 		this.servicio = servicio;
 	}
+	/**
+	 * Metodo get del atributo cliente
+	 * @return el cliente del turno
+	 */
+	public Cliente getCliente() {
+		return cliente;
+	}
+	/**
+	 * Metodo set del atributo cliente
+	 * @param cliente el nuevo cliente
+	 */
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	/**
+	 * @return the fecha
+	 */
+	public Date getFecha() {
+		return fecha;
+	}
+	/**
+	 * @param fecha the fecha to set
+	 */
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
    
+	
+	
 }

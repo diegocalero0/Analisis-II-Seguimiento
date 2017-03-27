@@ -12,10 +12,12 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = Empleado.get_all, query = "select empleado from Empleado empleado")
+	@NamedQuery(name = Empleado.get_all, query = "select empleado from Empleado empleado"),
+	@NamedQuery(name = Empleado.get_all_services, query = "select s from Empleado e INNER JOIN e.servicios s where e.cedula = :x ")
 })
 public class Empleado extends Operador implements Serializable {
 	public static final String get_all = "Empleado_getall";
+	public static final String get_all_services = "Empleado_getall_services";
 	/**
 	 * Cliente que está siendo atendido
 	 */

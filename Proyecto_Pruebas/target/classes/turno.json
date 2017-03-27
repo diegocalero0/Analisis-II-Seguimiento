@@ -2,23 +2,33 @@
 	"turno": [
 		{
 			"NUMERO": "0",
-			"SERVICIO_NOMBRE": "general"
+			"SERVICIO_NOMBRE": "general",
+			"CLIENTE_CEDULA": "1094964052",
+			"FECHA": "2017-05-18"
 		},
 		{
 			"NUMERO": "1",
-			"SERVICIO_NOMBRE": "general"
+			"SERVICIO_NOMBRE": "general",
+			"CLIENTE_CEDULA": "1094964052",
+			"FECHA": "2017-05-17"
 		},
 		{
 			"NUMERO": "2",
-			"SERVICIO_NOMBRE": "general"
+			"SERVICIO_NOMBRE": "general",
+			"CLIENTE_CEDULA": "1094964052",
+			"FECHA": "2017-05-12"
 		},
 		{
 			"NUMERO": "3",
-			"SERVICIO_NOMBRE": "general"
+			"SERVICIO_NOMBRE": "general",
+			"CLIENTE_CEDULA": "1094964052",
+			"FECHA": "2017-05-17"
 		},
 		{
 			"NUMERO": "4",
-			"SERVICIO_NOMBRE": "aleatorio"
+			"SERVICIO_NOMBRE": "aleatorio",
+			"CLIENTE_CEDULA": "1094964052",
+			"FECHA": "2017-05-17"
 		}
 	]
 }

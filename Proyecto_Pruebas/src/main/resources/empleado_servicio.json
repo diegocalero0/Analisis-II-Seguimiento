@@ -1,5 +1,5 @@
 {
-	"empleado_sevicio": [
+	"empleado_servicio": [
 		{
 			"empleados_CEDULA": "97091724522",
 			"servicios_NOMBRE": "general"
@@ -7,6 +7,10 @@
 		{
 			"empleados_CEDULA": "123456789",
 			"servicios_NOMBRE": "general"
+		},
+		{
+			"empleados_CEDULA": "123456789",
+			"servicios_NOMBRE": "particular"
 		}
 	]
 }

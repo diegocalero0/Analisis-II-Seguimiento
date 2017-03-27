@@ -1,5 +1,8 @@
 package entidadestest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -18,7 +21,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
+import dto.TurnoFechaDTO;
 import entidades.Servicio;
 import entidades.Turno;
 
@@ -123,6 +126,27 @@ public class TurnoTest {
 		TypedQuery<Turno> q = em.createNamedQuery(Turno.get_all_wihtout_general, Turno.class);
 		List<Turno> l = q.getResultList();
 		Assert.assertTrue(l.size() == 1);
+		System.out.println(l.get(0).getFecha());
+	}
+	
+	/**
+	 * Metodo test para consultar datos de un turno dada una fecha específica
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	public void consultaTurnosFechaTest(){
+		TypedQuery<TurnoFechaDTO> q = em.createNamedQuery(Turno.get_turnos_fecha, TurnoFechaDTO.class);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try{
+			date = format.parse("2017-05-17");
+		}catch(ParseException e){
+			e.printStackTrace();
+		}
+		q.setParameter("fecha", date);
+		List<TurnoFechaDTO> l = q.getResultList();
+		Assert.assertEquals(3, l.size());
 	}
 	
 }

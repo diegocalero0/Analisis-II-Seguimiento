@@ -1,9 +1,4 @@
 package entidadestest;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,6 +7,8 @@ import javax.persistence.TypedQuery;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.persistence.Cleanup;
+import org.jboss.arquillian.persistence.CleanupStrategy;
 import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
 import org.jboss.arquillian.transaction.api.annotation.Transactional;
@@ -22,9 +19,8 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import entidades.Administrador;
-import entidades.Cliente;
+import dto.ServiciosEmpleadosDTO;
+import entidades.Empleado;
 import entidades.Servicio;
 
 /**
@@ -126,4 +122,40 @@ public class ServicioTest {
 		Assert.assertTrue(!l.isEmpty());
 	}
 	
+	/**
+	 * Metodo test para la consulta de todos los empleados que pueden atender un determinado servicio
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	@Cleanup(strategy=CleanupStrategy.USED_ROWS_ONLY)
+	public void consultaEmpleadosTest(){
+		
+		TypedQuery<Empleado> q = em.createNamedQuery(Servicio.get_empleados, Empleado.class);
+		q.setParameter("nom", "general");
+		List<Empleado> l = q.getResultList();
+		Assert.assertEquals(2, l.size());
+	}
+	
+	/**
+	 * Metodo test para la consulta de todos los empleados que pueden atender todos los servicios
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	@Cleanup(strategy=CleanupStrategy.USED_ROWS_ONLY)
+	public void consultaServiciosYEmpleados(){
+		
+		TypedQuery<ServiciosEmpleadosDTO> q = em.createNamedQuery(Servicio.get_services_and_employees, ServiciosEmpleadosDTO.class);
+		List<ServiciosEmpleadosDTO> l = q.getResultList();
+		int i;
+		for(i = 0; i < l.size(); i++)
+			if(l.get(i).getNombreServicio().equals("general"))
+				break;
+		Assert.assertEquals(3, l.size());
+		/*
+		PREGUNTAR EN ASESORIA!!!
+		Assert.assertEquals(l.get(i).getempleados().size(), 1);
+		*/
+	}
 }

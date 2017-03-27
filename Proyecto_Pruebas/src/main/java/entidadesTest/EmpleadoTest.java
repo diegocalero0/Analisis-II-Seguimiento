@@ -24,6 +24,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import entidades.Cliente;
 import entidades.Empleado;
+import entidades.Servicio;
 
 /**
  * Test para la clase Empleado
@@ -136,6 +137,22 @@ public class EmpleadoTest {
 		List<Empleado> l = q.getResultList();
 		Assert.assertEquals(2, l.size());
 		Assert.assertTrue(l.get(0).getNombre().equals("maria") || l.get(0).getNombre().equals("jorge"));
+	}
+	
+	/**
+	 * Metodo test para la consulta de todos los servicios que puede cumplir un empleado
+	 * Se realiza la consulta, y se verifica que el numero de elementos coincida con los que sabemos
+	 * que existen en la base de datos
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	public void consultaServicios(){
+		TypedQuery<Servicio> q = em.createNamedQuery(Empleado.get_all_services, Servicio.class);
+		q.setParameter("x", "123456789");
+		List<Servicio> l = q.getResultList();
+		Assert.assertEquals(2, l.size());
+		
 	}
 	
 }

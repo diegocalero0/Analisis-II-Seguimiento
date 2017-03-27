@@ -84,7 +84,7 @@
 		<dependency>
 			<groupId>org.jboss.arquillian.container</groupId>
 			<artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-			<version> 1.0.0.Final</version>
+			<version>1.0.0.Final</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -111,8 +111,8 @@
 
 		<dependency>
 			<groupId>org.jboss.arquillian.extension</groupId>
-			<artifactId>arquillian-persistence-impl</artifactId>
-			<version>1.0.0.Alpha6</version>
+			<artifactId>arquillian-persistence-dbunit</artifactId>
+			<version>1.0.0.Alpha7</version>
 			<scope>provided</scope>
 		</dependency>
 

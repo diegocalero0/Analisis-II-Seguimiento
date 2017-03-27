@@ -52,7 +52,7 @@ public class AdministradorTest {
 	 */
 	@Test
 	@Transactional(value=TransactionMode.ROLLBACK)
-	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	@UsingDataSet({"tipocliente.json", "administrador.json", "empleado.json", "cliente.json", "servicio.json", "turno.json", "empleado_servicio.json"})
 	public void findTest(){
 		Administrador adminTest = (Administrador)em.find(Administrador.class, "987654321");
 		Assert.assertEquals(adminTest.getApellido(), "Candela");
@@ -65,7 +65,7 @@ public class AdministradorTest {
 	 */
 	@Test
 	@Transactional(value=TransactionMode.ROLLBACK)
-	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	@UsingDataSet({"tipocliente.json", "administrador.json", "empleado.json", "cliente.json", "servicio.json", "turno.json", "empleado_servicio.json"})
 	public void persistTest(){
 		Administrador adminTest = new Administrador();
 		adminTest.setNombre("Diego");
@@ -84,7 +84,7 @@ public class AdministradorTest {
 	 */
 	@Test
 	@Transactional(value=TransactionMode.ROLLBACK)
-	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	@UsingDataSet({"tipocliente.json", "administrador.json", "empleado.json", "cliente.json", "servicio.json", "turno.json", "empleado_servicio.json"})
 	public void removeTest(){
 		Administrador adminTest = (Administrador)em.find(Administrador.class, "987654321");
 		Assert.assertNotNull(adminTest);
@@ -99,7 +99,7 @@ public class AdministradorTest {
 	 */
 	@Test
 	@Transactional(value=TransactionMode.ROLLBACK)
-	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	@UsingDataSet({"tipocliente.json", "administrador.json", "empleado.json", "cliente.json", "servicio.json", "turno.json", "empleado_servicio.json"})
 	public void updateTest(){
 		Administrador adminTest = (Administrador)em.find(Administrador.class, "987654321");
 		adminTest.setApellido("Galvis");
@@ -114,7 +114,7 @@ public class AdministradorTest {
 	 */
 	@Test
 	@Transactional(value = TransactionMode.ROLLBACK)
-	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	@UsingDataSet({"tipocliente.json", "administrador.json", "empleado.json", "cliente.json", "servicio.json", "turno.json", "empleado_servicio.json"})
 	public void consultaTest(){
 		TypedQuery<Administrador> q = em.createNamedQuery(Administrador.get_all, Administrador.class);
 		List<Administrador> l = q.getResultList();
