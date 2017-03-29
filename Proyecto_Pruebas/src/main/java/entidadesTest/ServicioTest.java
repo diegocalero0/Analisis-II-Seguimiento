@@ -50,7 +50,7 @@ public class ServicioTest {
 	}
 	
 	/**
-	 * Metodo de prueba para la funcion Find
+	 * Metodo de prueba para la funcion Find.
 	 * Encuentra un Servicio y compara su descripcion con uno conocido.
 	 */
 	@Test
