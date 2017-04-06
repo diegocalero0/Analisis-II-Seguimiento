@@ -107,9 +107,10 @@
 
 	</build>
 	<modules>
-		<module>proyectoEAR</module>
+		
 		<module>Proyecto_EAR</module>
 		<module>Proyecto_Persistencia</module>
 		<module>Proyecto_Pruebas</module>
+		<module>ProyectoNegocio</module>
 	</modules>
 </project>

@@ -13,11 +13,13 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = Empleado.get_all, query = "select empleado from Empleado empleado"),
-	@NamedQuery(name = Empleado.get_all_services, query = "select s from Empleado e INNER JOIN e.servicios s where e.cedula = :x ")
+	@NamedQuery(name = Empleado.get_all_services, query = "select s from Empleado e INNER JOIN e.servicios s where e.cedula = :x "),
+	//@NamedQuery(name = Empleado.get_employee_max_client_attended, query = "SELECT MAX(COUNT(1)) FROM Turno t WHERE t.atendido = TRUE GROUP BY t.empleado")
 })
 public class Empleado extends Operador implements Serializable {
 	public static final String get_all = "Empleado_getall";
 	public static final String get_all_services = "Empleado_getall_services";
+	public static final String get_employee_max_client_attended = "Empleado_max_client_attended";
 	/**
 	 * Cliente que está siendo atendido
 	 */

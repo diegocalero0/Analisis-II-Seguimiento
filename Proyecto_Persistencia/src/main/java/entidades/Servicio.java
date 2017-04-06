@@ -13,12 +13,16 @@ import javax.persistence.*;
 @NamedQueries({
 	@NamedQuery(name = Servicio.get_all, query = "select servicio from Servicio servicio"),
 	@NamedQuery(name = Servicio.get_empleados, query = "select e from Empleado e, IN(e.servicios) servicio where servicio.nombre = :nom"),
-	@NamedQuery(name = Servicio.get_services_and_employees, query = "select new dto.ServiciosEmpleadosDTO(s.nombre, e) from Servicio s, IN(s.empleados) e ")
+	@NamedQuery(name = Servicio.get_services_and_employees, query = "select new dto.ServicioEmpleadosDTO(s.nombre, e) from Servicio s, IN(s.empleados) e "),
+	@NamedQuery(name = Servicio.get_services_and_num_clientes, query = "SELECT new dto.ServicioNumClientesDTO(t.servicio, COUNT(t.cliente)) FROM Turno t GROUP BY t.servicio"),
+	@NamedQuery(name = Servicio.get_service_with_def_description, query = "SELECT s from Servicio s WHERE s.descripcion = :descripcion" )
 })
 public class Servicio implements Serializable {
 	public static final String get_all = "Servicio_getall";
 	public static final String get_empleados = "Servicio_get_empleados";
 	public static final String get_services_and_employees = "Servicio_get_services_and_employees";
+	public static final String get_services_and_num_clientes = "Servicio_get_services_and_num_clientes";
+	public static final String get_service_with_def_description = "Servicio_get_service_with_def_description";
 	/**
 	 * nombre del servicio
 	 */

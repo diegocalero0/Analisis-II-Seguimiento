@@ -1,9 +1,14 @@
 package entidadestest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -78,7 +83,9 @@ public class ClienteTest {
 		TipoCliente tc = (TipoCliente)em.find(TipoCliente.class, "enfermo");
 		clienteTest.setTipo(tc);
 		Turno t = (Turno)em.find(Turno.class, 3);
-		clienteTest.setTurno(t);
+		List<Turno> turnos = new ArrayList<Turno>();
+		turnos.add(t);
+		clienteTest.setTurnos(turnos);
 		em.persist(clienteTest);
 		Cliente temp = (Cliente)em.find(Cliente.class, "555555");
 		Assert.assertEquals(temp.getCorreoElectronico(), "marce@gmail.com");
@@ -126,6 +133,54 @@ public class ClienteTest {
 		List<Cliente> l = q.getResultList();
 		Assert.assertEquals(2, l.size());
 		Assert.assertTrue(l.get(0).getNombre().equals("diego") || l.get(0).getNombre().equals("lucero"));
+	}
+	
+	/**
+	 * Metodo test para la consulta del numero de cliente que solicitaron un determinado servicio
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	public void consultaNumeroClientesDeterServicio(){
+		Query q = em.createNamedQuery(Cliente.get_num_of_clientes_determined_servie);
+		q.setParameter("x", "general");
+		long res = (long)q.getSingleResult();
+		Assert.assertEquals(Long.parseLong("2"), res);
+	}
+	
+	/**
+	 * Método test para la consulta del número de clientes que tienen turno para una fecha
+	 * especifica.
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	public void consultaNumeroClientesTurnoFecha(){
+		Query q = em.createNamedQuery(Cliente.get_num_of_clientes_with_turno_at_time);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try{
+			date = format.parse("2017-05-17");
+		}catch(ParseException e){
+			e.printStackTrace();
+		}
+		q.setParameter("x", date);
+		long res = (long)q.getSingleResult();
+		Assert.assertEquals(Long.parseLong("2"), res);
+	}
+	
+	/**
+	 * Método test para la consulta de clientes que tienen turnos sin atender.
+	 */
+	@Test
+	@Transactional(value =TransactionMode.ROLLBACK)
+	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	public void consultaNumeroClientesTurnoSinAtender(){
+		TypedQuery<Cliente> q = em.createNamedQuery(Cliente.get_clientes_with_turno_unattended, Cliente.class);
+		List<Cliente> clientes = q.getResultList();
+		
+		Assert.assertEquals(2, clientes.size());
+		
 	}
 	
 }

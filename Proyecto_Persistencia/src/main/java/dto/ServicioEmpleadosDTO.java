@@ -10,7 +10,7 @@ import entidades.Empleado;
  * @author Diego Calero
  *
  */
-public class ServiciosEmpleadosDTO implements Serializable{
+public class ServicioEmpleadosDTO implements Serializable{
 	/**
 	 * Codigo de serializacion
 	 */
@@ -30,11 +30,11 @@ public class ServiciosEmpleadosDTO implements Serializable{
 	 * @param nombreServicio el nombre del servicio
 	 * @param empleados empleados que atienden el servicio
 	 */
-	public ServiciosEmpleadosDTO(String nombreServicio, List<Empleado> empleados){
+	public ServicioEmpleadosDTO(String nombreServicio, List<Empleado> empleados){
 		this.empleados = empleados;
 		this.nombreServicio = nombreServicio;
 	}
-	public ServiciosEmpleadosDTO(String nombreServicio, Empleado empleado){
+	public ServicioEmpleadosDTO(String nombreServicio, Empleado empleado){
 		this.empleado = empleado;
 		this.nombreServicio = nombreServicio;
 	}

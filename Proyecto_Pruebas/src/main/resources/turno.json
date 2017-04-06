@@ -4,31 +4,36 @@
 			"NUMERO": "0",
 			"SERVICIO_NOMBRE": "general",
 			"CLIENTE_CEDULA": "1094964052",
-			"FECHA": "2017-05-18"
+			"FECHA": "2017-05-18",
+			"ATENDIDO": "FALSE"
 		},
 		{
 			"NUMERO": "1",
 			"SERVICIO_NOMBRE": "general",
 			"CLIENTE_CEDULA": "1094964052",
-			"FECHA": "2017-05-17"
+			"FECHA": "2017-05-17",
+			"ATENDIDO": "FALSE"
 		},
 		{
 			"NUMERO": "2",
 			"SERVICIO_NOMBRE": "general",
 			"CLIENTE_CEDULA": "1094964052",
-			"FECHA": "2017-05-12"
+			"FECHA": "2017-05-12",
+			"ATENDIDO": "FALSE"
 		},
 		{
 			"NUMERO": "3",
 			"SERVICIO_NOMBRE": "general",
-			"CLIENTE_CEDULA": "1094964052",
-			"FECHA": "2017-05-17"
+			"CLIENTE_CEDULA": "41890975",
+			"FECHA": "2017-05-17",
+			"ATENDIDO": "FALSE"
 		},
 		{
 			"NUMERO": "4",
 			"SERVICIO_NOMBRE": "aleatorio",
 			"CLIENTE_CEDULA": "1094964052",
-			"FECHA": "2017-05-17"
+			"FECHA": "2017-05-17",
+			"ATENDIDO": "FALSE"
 		}
 	]
 }

@@ -4,6 +4,8 @@ import entidades.Persona;
 import entidades.TipoCliente;
 import entidades.Turno;
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -12,15 +14,22 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = Cliente.get_all, query = "select cliente from Cliente cliente")
+	@NamedQuery(name = Cliente.get_all, query = "SELECT cliente FROM Cliente cliente"),
+	@NamedQuery(name = Cliente.get_num_of_clientes_determined_servie, query = "SELECT COUNT(DISTINCT t.cliente) FROM Turno t WHERE t.servicio.nombre = :x"),
+	@NamedQuery(name = Cliente.get_num_of_clientes_with_turno_at_time, query = "SELECT COUNT(DISTINCT t.cliente) FROM Turno t WHERE t.fecha = :x"),
+	@NamedQuery(name = Cliente.get_clientes_with_turno_unattended, query = "SELECT t.cliente From Turno t WHERE t.atendido = FALSE GROUP BY t.cliente")
 })
 public class Cliente extends Persona implements Serializable {
 	public static final String get_all = "Cliente_getall";
+	public static final String get_num_of_clientes_determined_servie = "Cliente_get_num_cliente_servicio";
+	public static final String get_num_of_clientes_with_turno_at_time = "Cliente_get_num_cliente_at_turno_time";
+	public static final String get_clientes_with_turno_unattended = "Cliente_get_all_with_turno_unattended";
+	
 	/**
-	 * Turno asignado a la persona
+	 * Turnos que tiene asignados una persona
 	 */
-	@OneToOne(mappedBy = "cliente")
-	private Turno turno;
+	@OneToMany(mappedBy = "cliente")
+	private List<Turno> turnos;
 	/**
 	 * Categoria a la que pertenece un cliente
 	 */
@@ -40,15 +49,15 @@ public class Cliente extends Persona implements Serializable {
 	 * Metodo get del atributo turno
 	 * @return el turno actual
 	 */
-	public Turno getTurno() {
-		return this.turno;
+	public List<Turno> getTurnos() {
+		return this.turnos;
 	}
 	/**
 	 * Metodo set dek atributo turno
 	 * @param turno el turno a asignar
 	 */
-	public void setTurno(Turno turno) {
-		this.turno = turno;
+	public void setTurnos(List<Turno> turnos) {
+		this.turnos = turnos;
 	}   
 	/**
 	 * Metodo get del atributo tipo

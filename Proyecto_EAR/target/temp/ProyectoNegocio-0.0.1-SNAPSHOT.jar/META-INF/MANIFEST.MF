@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: USUARIO 1
+Class-Path: lib/Proyecto_Persistencia-0.0.1-SNAPSHOT.jar
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_91
+

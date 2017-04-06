@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Built-By: USUARIO 1
-Class-Path: Proyecto_Persistencia-0.0.1-SNAPSHOT.jar
+Class-Path: Proyecto_Persistencia-0.0.1-SNAPSHOT.jar ProyectoNegocio-0
+ .0.1-SNAPSHOT.jar
 Build-Jdk: 1.8.0_91
 Created-By: Maven Integration for Eclipse
 

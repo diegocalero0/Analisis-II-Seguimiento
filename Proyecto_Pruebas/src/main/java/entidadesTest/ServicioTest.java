@@ -19,7 +19,8 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import dto.ServiciosEmpleadosDTO;
+import dto.ServicioEmpleadosDTO;
+import dto.ServicioNumClientesDTO;
 import entidades.Empleado;
 import entidades.Servicio;
 
@@ -146,13 +147,32 @@ public class ServicioTest {
 	@Cleanup(strategy=CleanupStrategy.USED_ROWS_ONLY)
 	public void consultaServiciosYEmpleados(){
 		
-		TypedQuery<ServiciosEmpleadosDTO> q = em.createNamedQuery(Servicio.get_services_and_employees, ServiciosEmpleadosDTO.class);
-		List<ServiciosEmpleadosDTO> l = q.getResultList();
+		TypedQuery<ServicioEmpleadosDTO> q = em.createNamedQuery(Servicio.get_services_and_employees, ServicioEmpleadosDTO.class);
+		List<ServicioEmpleadosDTO> l = q.getResultList();
 		int i;
 		for(i = 0; i < l.size(); i++)
 			if(l.get(i).getNombreServicio().equals("general"))
 				break;
 		Assert.assertEquals(3, l.size());
+		/*
+		PREGUNTAR EN ASESORIA!!!
+		Assert.assertEquals(l.get(i).getempleados().size(), 1);
+		*/
+	}
+	/**
+	 * Metodo Test para la consulta de los servicios y el numero de clientes que solicitaron dicho servicio
+	 */
+	@Test
+	@Transactional(value = TransactionMode.ROLLBACK)
+	@UsingDataSet({"tipocliente.json", "administrador.json", "servicio.json", "turno.json", "cliente.json","empleado.json", "empleado_servicio.json"})
+	@Cleanup(strategy=CleanupStrategy.USED_ROWS_ONLY)
+	public void consultaServiciosYNumClientes(){
+		
+		TypedQuery<ServicioNumClientesDTO> q = em.createNamedQuery(Servicio.get_services_and_num_clientes, ServicioNumClientesDTO.class);
+		List<ServicioNumClientesDTO> l = q.getResultList();
+		for(int i = 0; i < l.size(); i++)
+			System.out.println(l.get(i).getServicio().getDescripcion()+ " " + l.get(i).getNumClientes());
+		Assert.assertEquals(2, l.size());
 		/*
 		PREGUNTAR EN ASESORIA!!!
 		Assert.assertEquals(l.get(i).getempleados().size(), 1);

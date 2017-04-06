@@ -21,6 +21,11 @@ public class Turno implements Serializable {
 	public static final String get_cliente = "Turno_get_cliente";
 	public static final String get_turnos_fecha = "Turno_getall_fecha";
 	/**
+	 * Indica si el turno ya fue atendido
+	 */
+	@Column(nullable = false)
+	private boolean atendido;
+	/**
 	 * Numero asignado al turno
 	 */
 	@Id
@@ -33,7 +38,7 @@ public class Turno implements Serializable {
 	/**
 	 * Cliente que contiene el turno
 	 */
-	@OneToOne
+	@ManyToOne
 	private Cliente cliente;
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = false)
@@ -104,6 +109,18 @@ public class Turno implements Serializable {
 	 */
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
+	}
+	/**
+	 * @return the atendido
+	 */
+	public boolean isAtendido() {
+		return atendido;
+	}
+	/**
+	 * @param atendido the atendido to set
+	 */
+	public void setAtendido(boolean atendido) {
+		this.atendido = atendido;
 	}
    
 	

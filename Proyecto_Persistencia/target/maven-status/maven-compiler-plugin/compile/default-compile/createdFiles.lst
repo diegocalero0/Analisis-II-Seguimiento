@@ -1,0 +1,11 @@
+dto\ServicioNumClientesDTO.class
+entidades\Administrador.class
+dto\TurnoFechaDTO.class
+entidades\TipoCliente.class
+dto\ServicioEmpleadosDTO.class
+entidades\Servicio.class
+entidades\Turno.class
+entidades\Persona.class
+entidades\Cliente.class
+entidades\Operador.class
+entidades\Empleado.class

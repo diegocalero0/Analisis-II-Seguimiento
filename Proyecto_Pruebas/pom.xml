@@ -123,5 +123,11 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.diegocalero</groupId>
+			<artifactId>ProyectoNegocio</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>ejb</type>
+		</dependency>
 	</dependencies>
 </project>
